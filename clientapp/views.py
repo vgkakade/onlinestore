@@ -65,15 +65,6 @@ def profileView(request,pk):
     form = forms.UserRegistrationForm(user)
     return render(request, 'clientapp/account.html', {'user':user})
 
-        # pk = self.kwargs.get('pk')
-        # if 'personalForm' not in context:
-        #     context['personalForm'] = self.form_class(request=self.request)
-        #     return get_object_or_404(User.objects.all(), pk=pk)
-        # if 'addressForm' not in context:
-        #     context['personalForm'] = self.second_form_class(request=self.request)
-        # return context
-
-
     # def get(self, request, *args, **kwargs):
     #     personalInfoForm = UserInfoForm
     #     addressForm = UserAddressForm
