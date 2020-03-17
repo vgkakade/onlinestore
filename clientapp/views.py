@@ -52,7 +52,6 @@ def loginView(request):
 @login_required
 def logoutView(request):
     logout(request)
-    userlogout= True
     return HttpResponseRedirect(reverse('client_app:indexpage'))
 
 class SingleProduct(generic.DetailView):
