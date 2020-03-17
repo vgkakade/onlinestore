@@ -1,0 +1,103 @@
+<html>
+{% load static %}
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+<!--  <script src="{% static 'clientapp/js/jquery.min.js' %}"></script>-->
+<!--  <script src="{% static 'clientapp/js/bootstrap.bundle.min.js '%}"></script>      click functionality does not work if uncommented-->
+<!--  <script src="{% static 'clientapp/js/jquery.scrollbar.min.js' %}"></script>-->
+<!--  <script src="{% static 'clientapp/js/jquery-scrollLock.min.js' %}"></script>-->
+    <style>
+      .dropdown:hover .dropdown-menu {
+       display: block;
+      }
+    </style>
+
+  </head>
+  <body>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <a class="navbar-brand" href="{% url 'client_app:indexpage' %}">APPLEDORE</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Products
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Add Product</a>
+          <a class="dropdown-item" href="#">Edit Product</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Category
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Add Category</a>
+          <a class="dropdown-item" href="#">Edit Category</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Orders
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Orders Placed</a>
+          <a class="dropdown-item" href="#">Orders Cancelled</a>
+        </div>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      {% if user.is_authenticated %}
+              <li class="nav-item dropdown">
+        {% if user.is_authenticated %}
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Welcome {{user.username}}
+          </a>
+        {% else %}
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Profile
+          </a>
+        {% endif %}
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="left: auto;right: 10%;">
+          <a class="dropdown-item" href="{% url 'client_app:profileInfo' user.id %}">My Profile</a>
+          <a class="dropdown-item" href="#">My Orders</a>
+              <a class="dropdown-item" href="{% url 'client_app:thanks' %}">Logout</a>
+
+        </div>
+      </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'client_app:login' %}">Login</a>
+        </li>
+      {% endif %}
+     </ul>
+        <ul class="nav navbar-nav navbar-right">
+      <li class="nav-item dropdown handbag">
+        <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-shopping-bag"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="left: auto;right: 10%;">
+          <a class="dropdown-item" href="#">Logout</a>
+        </div>
+      </li>
+     </ul>
+  </div>
+</nav>
+{% block content %}
+
+{% endblock %}
+</body>
+</html>

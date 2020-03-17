@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+{% include 'inc/navbar.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>My Account</title>
+
+  <link rel="stylesheet" href="{% static '/clientapp/css/account.css' %}">
+
+  <script>
+        $(document).ready(function(){
+            $(".myorders-form").hide();
+            $(".myaddress-form").hide();
+
+            $(".myorder-form-link").click(function(e){
+                $(".myorders-form").show();
+                $(".myprofile-form").hide();
+                $(".myaddress-form").hide();
+            });
+
+            $(".myprofile-form-link").click(function(e){
+                $(".myprofile-form").show();
+                $(".myorders-form").hide();
+                $(".myaddress-form").hide();
+            });
+
+            $(".myaddress-form-link").click(function(e){
+                $(".myaddress-form").show();
+                $(".myprofile-form").hide();
+                $(".myorders-form").hide();
+            });
+        });
+    </script>
+</head>
+
+<body>
+  <!-- Sidenav -->
+  <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main" style="margin-top:4.8%;">
+    <div class="scrollbar-inner">
+<!--      <div class="sidenav-header  align-items-center">-->
+<!--        <a class="navbar-brand" href="javascript:void(0)">-->
+<!--          <img src="{% static '/clientapp/img/blue.png' %}" class="navbar-brand-img" alt="...">-->
+<!--        </a>-->
+<!--      </div>-->
+      <div class="navbar-inner">
+        <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+          <!-- Nav items -->
+          <ul>
+            <li class="nav-item" style="list-style: none;">
+              <a class="nav-link myprofile-form-link" href="#" >
+                <!-- <i class="ni ni-single-02 text-yellow"></i> -->
+                <span class="nav-link-text">Profile</span>
+              </a>
+            </li>
+            <li class="nav-item" style="list-style: none;">
+              <a class="nav-link myaddress-form-link" href="#" >
+                <!-- <i class="ni ni-single-02 text-yellow"></i> -->
+                <span class="nav-link-text">Manage Address</span>
+              </a>
+            </li>
+            <li class="nav-item" style="list-style: none;">
+              <a class="nav-link myorder-form-link" href="#">
+                <span class="nav-link-text">My Orders</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+    <!-- Main content -->
+  <div class="main-content">
+    <!-- Page Profile Form -->
+    <div class="container-fluid myprofile-form">
+      <div class="row">
+        <div class="col-xl-11 order-xl-1">
+          <div class="card">
+            <div class="card-body">
+              <form method="POST" name="personalForm">
+                <h6 class="heading-small text-muted mb-4">Personal information</h6>
+                {% load widget_tweaks %}
+                {% load crispy_forms_tags %}
+                {% csrf_token %}
+<!--                {{ user }}-->
+<!--&lt;!&ndash;                {{ form|crispy }} to not remove some strange format gets applied&ndash;&gt;-->
+<!--                <div class="pl-lg-4">-->
+<!--                  <div class="row">-->
+<!--                    <div class="col-lg-6">-->
+<!--                      <div class="form-group">-->
+<!--                        <label class="form-control-label">Name</label>-->
+<!--&lt;!&ndash;                        Adds bootstrap class to widget&ndash;&gt;-->
+                        {{user.name | add_class:'form-control' }}
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-lg-6">-->
+<!--                      <div class="form-group">-->
+<!--                        <label class="form-control-label">Email</label>-->
+<!--                        {{personalInfoForm.email | add_class:'form-control'}}-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="row">-->
+<!--                    <div class="col-lg-6">-->
+<!--                      <div class="form-group">-->
+<!--                        <label class="form-control-label">Mobile Number</label>-->
+<!--                        {{personalInfoForm.mobile | add_class:'form-control'}}-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-lg-6">-->
+<!--                      <div class="form-group">-->
+<!--                        <label class="form-control-label">Password</label>-->
+<!--                        {{personalInfoForm.password | add_class:'form-control'}}-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+                <button type="submit" class="btn btn-success btn-lg float-right" name="personalForm">Submit</button>
+                <br>
+                <br>
+                <hr class="my-4"/>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Profile Form -->
+  </div>
+{% endblock %}
+</body>
+</html>

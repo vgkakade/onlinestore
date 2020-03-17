@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% extends 'inc/navbar.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static '/clientapp/css/index.css'%}">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+<!--        for start-->
+        {% if userlogout %}
+            <div class="alert alert-success" role="alert">
+                Logged Out successfully
+            </div>
+        {% else %}
+        {% if book_list%}
+            {% for book in book_list %}
+        <div class="col-md-3 col-sm-6" style="margin-bottom: 4%;">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a href="{% url 'client_app:singlepage' pk=book.pk %}">
+
+                        <img class="pic-1" src="{{ book.thumb.url }}">
+<!--                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-2.jpg">-->
+                    </a>
+                    <ul class="social">
+                        <li><a href="{% url 'client_app:singlepage' pk=book.pk %}" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                        <!--<li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>-->
+                        {% if user.is_authenticated %}
+                            <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                        {% endif %}
+                    </ul>
+<!--                    <span class="product-new-label">Sale</span>-->
+<!--                    <span class="product-discount-label">20%</span>-->
+                </div>
+                <ul class="rating">
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star disable"></li>
+                </ul>
+                <div class="product-content">
+                    <h3 class="title"><a href="{% url 'client_app:singlepage' pk=book.pk %}"><strong>{{book.name}}</strong></a></h3>
+                    <div class="price"><i class="fa fa-inr" aria-hidden="true"></i> {{book.price}}</div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+             <h1>Books coming soon</h1>
+        {% endif %}
+        {% endif %}
+<!--        for end-->
+    </div>
+    <br>
+    <br>
+        <br>
+    <br>
+    <br>
+</div>
+</div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+{% include 'inc/navbar.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>My Account</title>
+
+  <link rel="stylesheet" href="{% static '/clientapp/css/account.css' %}">
+
+  <script>
+        $(document).ready(function(){
+            $(".myorders-form").hide();
+            $(".myaddress-form").hide();
+
+            $(".myorder-form-link").click(function(e){
+                $(".myorders-form").show();
+                $(".myprofile-form").hide();
+                $(".myaddress-form").hide();
+            });
+
+            $(".myprofile-form-link").click(function(e){
+                $(".myprofile-form").show();
+                $(".myorders-form").hide();
+                $(".myaddress-form").hide();
+            });
+
+            $(".myaddress-form-link").click(function(e){
+                $(".myaddress-form").show();
+                $(".myprofile-form").hide();
+                $(".myorders-form").hide();
+            });
+        });
+    </script>
+</head>
+
+<body>
+  <!-- Sidenav -->
+  <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main" style="margin-top:4.8%;">
+    <div class="scrollbar-inner">
+<!--      <div class="sidenav-header  align-items-center">-->
+<!--        <a class="navbar-brand" href="javascript:void(0)">-->
+<!--          <img src="{% static '/clientapp/img/blue.png' %}" class="navbar-brand-img" alt="...">-->
+<!--        </a>-->
+<!--      </div>-->
+      <div class="navbar-inner">
+        <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+          <!-- Nav items -->
+          <ul>
+            <li class="nav-item" style="list-style: none;">
+              <a class="nav-link myprofile-form-link" href="#" >
+                <!-- <i class="ni ni-single-02 text-yellow"></i> -->
+                <span class="nav-link-text">Profile</span>
+              </a>
+            </li>
+            <li class="nav-item" style="list-style: none;">
+              <a class="nav-link myaddress-form-link" href="#" >
+                <!-- <i class="ni ni-single-02 text-yellow"></i> -->
+                <span class="nav-link-text">Manage Address</span>
+              </a>
+            </li>
+            <li class="nav-item" style="list-style: none;">
+              <a class="nav-link myorder-form-link" href="#">
+                <span class="nav-link-text">My Orders</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+    <!-- Main content -->
+  <div class="main-content">
+    <!-- End of Profile Form -->
+
+    <!-- Order form -->
+    <div class="row myorders-form">
+        <div class="col">
+          <div class="card bg-default shadow">
+            <div class="card-header bg-transparent border-0">
+              <h3 class="text-white mb-0">My Order List</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-dark table-flush">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col" class="sort" data-sort="name">Item Name</th>
+                    <th scope="col" class="sort" data-sort="budget">Price</th>
+                    <th scope="col" class="sort" data-sort="status">Status</th>
+                    <th scope="col">Ordered Placed On</th>
+                    <th scope="col" class="sort" data-sort="completion">Expected delivery Date</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                  <tr>
+                    <td class="budget">
+                      Item Name
+                    </td>
+                    <td class="budget">
+                      $2500
+                    </td>
+                    <td>
+                      <span class="badge badge-dot mr-4">
+                        <i class="bg-warning"></i>
+                        <span class="status">Pending</span>
+                      </span>
+                    </td>
+                    <td>
+                      11/01/1996
+                    </td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <span class="completion mr-2">60%</span>
+                        <div>
+                          <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of orders form -->
+
+  </div>
+{% endblock %}
+</body>
+</html>

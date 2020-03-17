@@ -1,0 +1,12 @@
+1. LoginView in project directory directly creates login.html page
+2. django_admin_log maintains logged sessions website.
+3. Cart is not allowed in django instead cart info is stored in db, which is later deleted.
+4. django automatically generates primary key for the entries in the table, hence id field generation is not required.
+5. Inbuilt Usercreation form is used to to registerform along with customized fields.
+
+6. Vanilla views are nothing but non class based views
+7. Initially when any request is made, they are internally sent to dispatch method who is responsible to categorize it GET or POST method.
+8. To get data onto form or anywhere get method is called, e.g passing userId through URL will hit get method where Id will be used to retrieve
+    object from model.
+9. Post method can be used when accepting input from user. After data is got from model, user may/may not make changes using form. So this
+    changed data is sent using POST method to save in model.

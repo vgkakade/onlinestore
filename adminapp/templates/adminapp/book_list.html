@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% extends 'admin_navbar.html '%}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Home</title>
+</head>
+<body>
+        <div class="container">
+        {% if book_list %}          <!-- context name given in corresponding views.py-->
+        <table class="table table-hover">
+            <thead>
+                <th>Available Stock</th>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Language</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Edit/Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for book in book_list %}
+                <tr>
+                    <td>{{forloop.counter}}</td>            <!--prints sr no with each increment -->
+                    <td>{{book.name}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.language}}</td>
+                    <td>{{book.quantity}}</td>
+                    <td>{{book.price}}/-</td>
+                    <td><a href="{% url 'admin_app:book_update' pk=book.id %}"><i class="fa fa-edit"></i></a> / <a href="{% url 'admin_app:book_delete' pk=book.id %}"><i class="fa fa-trash"></i></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <h1>No Books in Store :-(</h1>
+        {% endif %}
+    </div>
+</body>
+{% endblock %}
+</html>
